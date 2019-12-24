@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Button Game</title>
+    <script>
+        var cnt = 0;
+        function CountFun() {
+            document.getElementById('btn').style.left = Math.floor(Math.random()*screen.width % 1000).toString() + 'px';
+            document.getElementById('btn').style.top = Math.floor(Math.random()*screen.height % 500).toString() + 'px';
+            cnt = cnt + 1;
+            document.getElementById("count").innerHTML = "Click Count: "  + cnt.toString();
+        }
+        var secs = 30;
+        var counter = setInterval(timer, 1000);
+
+        function timer(){
+            secs = secs - 1;
+            if (secs <= 0) {
+                clearInterval(counter);
+                document.getElementById("btn").disabled = true;
+                document.getElementById("seconds").innerHTML= "Seconds: " + secs.toString();
+                return;
+            }
+            document.getElementById("seconds").innerHTML= "Seconds: " + secs.toString();
+        }
+    </script>
+</head>
+<body>
+    <div id="showCount" style="position: absolute; height: 600px; width: 1100px; background-color: red; outline: 2px solid black">
+        <button id = "btn"
+            type="button"
+            style="width: 100px; height: 100px; top: 275px; left: 500px; background-color: blue; position: relative; font-size: 20px;"
+            onClick = CountFun()>
+            Quick, Click Me!
+        </button>
+    </div>
+    <div id="count"
+         style="position: absolute; height: 100px; width: 150px; left: 1125px; font-size: 20px; outline: 2px solid black">
+         Click Count:
+    </div>
+    <div id="seconds"
+         style="position: absolute; top: 110px; height: 100px; width: 150px; left: 1125px; font-size: 20px; outline: 2px solid black">
+         Seconds:
+    </div>
+</body>
+</html>

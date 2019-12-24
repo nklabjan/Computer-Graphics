@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="description" content="Spinning cube example">
+    <meta charset="utf-8">
+    <title>WebGL cube drawn w/indexed vertex list</title>
+
+    <script id="vs" type="not-js">
+      attribute vec3 vPosition;
+      attribute vec3 vColor;
+      varying vec3 fColor;
+      uniform mat4 uMVP;
+
+      void main(void) {
+        gl_Position = uMVP * vec4(vPosition, 1.0);
+	    fColor = vColor;
+      }
+    </script>
+
+    <script id="fs" type="not-js">
+      precision highp float;
+      varying vec3 fColor;
+
+      void main(void) {
+	     gl_FragColor = vec4(fColor, 1.0);
+      }
+    </script>
+
+</head>
+<body onload="start()">
+    <canvas id="mycanvas" width="600" height="600"></canvas><br>
+    <label for="slider">
+    </label>
+    Rotates Camera Around Object:
+
+    <input id="slider" type="range" min="0" max="360" />
+    <label for="slider1">
+    </label>
+    Rotates Cube Around X-Axis:
+
+    <input id="slider1" type="range" min="0" max="360" />
+    <label for="slider2">
+    </label>
+    Rotates Triangles:
+
+    <input id="slider2" type="range" min="0" max="360" />
+    <script src="http://graphics.cs.wisc.edu/JS/twgl-full.min.js"></script>
+    <script src="drawing.js"></script>
+</body>
+</html>
